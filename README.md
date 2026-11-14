@@ -8,6 +8,14 @@ Built using **Three.js, JavaScript and MediaPipe**, the project combines 3D visu
 
 Users can interact with electronic components using traditional mouse controls or hand gestures through a webcam.
 
+## Live Demo
+
+🚀 **Try GestureCircuit:** https://gesturecircuit.netlify.app/
+
+Open the application in Chrome, allow webcam access, and experience interactive 3D circuit building using hand gestures.
+
+**No installation required!**
+
 ## Features
 
 ### 3D Virtual Electronics Workbench
