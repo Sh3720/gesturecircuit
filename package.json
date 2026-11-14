@@ -1,0 +1,16 @@
+{
+  "name": "gesturecircuit-3d",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@mediapipe/tasks-vision": "^1.1.1",
+    "three": "^0.180.0",
+    "vite": "^7.1.7"
+  }
+}
