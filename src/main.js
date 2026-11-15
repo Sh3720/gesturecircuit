@@ -536,16 +536,24 @@ gcToggle.addEventListener("click", () => {
 });
 
 
+
 const scene = new THREE.Scene();
-scene.background = new THREE.Color('#091321');
-scene.fog = new THREE.Fog('#091321', 17, 34);
+scene.background = new THREE.Color('#22241f');
+scene.fog = new THREE.Fog('#22241f', 19, 38);
+
 const camera = new THREE.PerspectiveCamera(43, 1, 0.1, 100);
 camera.position.set(8.8, 8.5, 10.5);
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' });
+
+const renderer = new THREE.WebGLRenderer({
+  antialias: true,
+  alpha: false,
+  powerPreference: 'high-performance'
+});
+
 renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.18;
+renderer.toneMappingExposure = 1.08;
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 container.appendChild(renderer.domElement);
@@ -559,8 +567,10 @@ controls.maxDistance = 19;
 controls.maxPolarAngle = Math.PI * 0.48;
 controls.enabled = true;
 
-scene.add(new THREE.HemisphereLight(0xbfdcff, 0x1b2635, 2.0));
-const keyLight = new THREE.DirectionalLight(0xfff0d6, 3.3);
+// Olive Noir studio lighting
+scene.add(new THREE.HemisphereLight(0xe5dfc9, 0x292b24, 1.8));
+
+const keyLight = new THREE.DirectionalLight(0xffedcf, 3.0);
 keyLight.position.set(5, 10, 5);
 keyLight.castShadow = true;
 keyLight.shadow.mapSize.set(2048, 2048);
@@ -569,42 +579,95 @@ keyLight.shadow.camera.right = 10;
 keyLight.shadow.camera.top = 10;
 keyLight.shadow.camera.bottom = -10;
 scene.add(keyLight);
-const cyanLight = new THREE.PointLight(0x29bfae, 30, 15);
-cyanLight.position.set(-5, 4, -2);
-scene.add(cyanLight);
-const blueLight = new THREE.PointLight(0x4f79ff, 20, 14);
-blueLight.position.set(5, 3, 3);
-scene.add(blueLight);
 
-// Dark lab floor and raised workbench.
-const ground = new THREE.Mesh(new THREE.PlaneGeometry(50, 50), new THREE.MeshStandardMaterial({ color: 0x07101b, roughness: 0.72, metalness: 0.12 }));
+// Soft warm fill lights
+const warmLight = new THREE.PointLight(0xc5a879, 18, 16);
+warmLight.position.set(-5, 4, -2);
+scene.add(warmLight);
+
+const fillLight = new THREE.PointLight(0x92916b, 12, 14);
+fillLight.position.set(5, 3, 3);
+scene.add(fillLight);
+
+// Dark graphite studio floor
+const ground = new THREE.Mesh(
+  new THREE.PlaneGeometry(50, 50),
+  new THREE.MeshStandardMaterial({
+    color: 0x242621,
+    roughness: 0.82,
+    metalness: 0.08
+  })
+);
 ground.rotation.x = -Math.PI / 2;
 ground.position.y = -0.22;
 ground.receiveShadow = true;
 scene.add(ground);
-const boardMat = new THREE.MeshStandardMaterial({ color: 0x111f30, roughness: 0.48, metalness: 0.35 });
-const board = new THREE.Mesh(new THREE.BoxGeometry(12, 0.24, 8), boardMat);
+
+// Muted olive-charcoal workbench
+const boardMat = new THREE.MeshStandardMaterial({
+  color: 0x34362d,
+  roughness: 0.52,
+  metalness: 0.22
+});
+
+const board = new THREE.Mesh(
+  new THREE.BoxGeometry(12, 0.24, 8),
+  boardMat
+);
 board.position.y = -0.03;
 board.receiveShadow = true;
 board.castShadow = true;
 scene.add(board);
-const boardTop = new THREE.Mesh(new THREE.PlaneGeometry(11.94, 7.94), new THREE.MeshStandardMaterial({ color: 0x0c1726, roughness: 0.72, metalness: 0.08 }));
+
+// Workbench top surface
+const boardTop = new THREE.Mesh(
+  new THREE.PlaneGeometry(11.94, 7.94),
+  new THREE.MeshStandardMaterial({
+    color: 0x292c25,
+    roughness: 0.76,
+    metalness: 0.06
+  })
+);
 boardTop.rotation.x = -Math.PI / 2;
 boardTop.position.y = 0.094;
 boardTop.receiveShadow = true;
 scene.add(boardTop);
-const grid = new THREE.GridHelper(12, 30, 0x31516e, 0x20344a);
+
+// Subtle olive technical grid
+const grid = new THREE.GridHelper(
+  12,
+  30,
+  0x77765a,
+  0x414438
+);
 grid.position.y = 0.102;
 scene.add(grid);
-const edgeMat = new THREE.MeshStandardMaterial({ color: 0x36bfb4, emissive: 0x0a6563, emissiveIntensity: 1.0, metalness: 0.65, roughness: 0.3 });
+
+// Restrained antique-brass workbench edges
+const edgeMat = new THREE.MeshStandardMaterial({
+  color: 0x827957,
+  emissive: 0x292719,
+  emissiveIntensity: 0.35,
+  metalness: 0.65,
+  roughness: 0.32
+});
+
 function edgeBar(width, height, depth, x, y, z) {
-  const mesh = new THREE.Mesh(new THREE.BoxGeometry(width, height, depth), edgeMat);
-  mesh.position.set(x, y, z); mesh.castShadow = true; scene.add(mesh); return mesh;
+  const mesh = new THREE.Mesh(
+    new THREE.BoxGeometry(width, height, depth),
+    edgeMat
+  );
+  mesh.position.set(x, y, z);
+  mesh.castShadow = true;
+  scene.add(mesh);
+  return mesh;
 }
+
 edgeBar(12.04, 0.035, 0.035, 0, 0.105, -4.015);
 edgeBar(12.04, 0.035, 0.035, 0, 0.105, 4.015);
 edgeBar(0.035, 0.035, 8.0, -6.015, 0.105, 0);
 edgeBar(0.035, 0.035, 8.0, 6.015, 0.105, 0);
+
 
 const componentLayer = new THREE.Group(); scene.add(componentLayer);
 const wireLayer = new THREE.Group(); scene.add(wireLayer);
@@ -1398,12 +1461,6 @@ function animate() {
   elapsed += delta;
 
   controls.update();
-
-  cyanLight.position.x =
-    -5 + Math.sin(elapsed * 0.24) * 1.2;
-
-  blueLight.position.z =
-    3 + Math.cos(elapsed * 0.2) * 1.0;
 
   components.forEach((item) => {
     if (item.selectionRing && item === selectedComponent) {
