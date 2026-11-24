@@ -366,7 +366,7 @@ app.innerHTML = `
         <div class="inspector-bottom"><span class="secure-dot"></span><span>Calculations run locally in your browser</span></div>
       </aside>
     </main>
-    <footer class="app-footer"><span>GESTURECIRCUIT <b>3D</b></span><span>LEARN BY BUILDING <i>·</i> EXPERIMENT SAFELY <i>·</i> THINK IN CIRCUITS</span><span class="version">PROTOTYPE 0.1</span></footer>
+    <footer class="app-footer"><span>GESTURECIRCUIT <b>3D</b></span><span>LEARN BY BUILDING <i>·</i> EXPERIMENT SAFELY <i>·</i> THINK IN CIRCUITS</span><span class="version">PROTOTYPE 1.0</span></footer>
     <div id="toast" class="toast" role="status"></div>
   </div>
 `;
