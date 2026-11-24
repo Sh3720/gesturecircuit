@@ -9,7 +9,7 @@ app.innerHTML = `
     <header class="topbar">
       <div class="brand-lockup">
         <div class="brand-mark"><span></span><span></span><span></span></div>
-        <div><p class="eyebrow">INTERACTIVE ELECTRONICS STUDIO</p><h1>Gesture<span>Circuit</span><sup>3D</sup></h1></div>
+        <div><p class="eyebrow">INTERACTIVE ELECTRONICS & PHYSICS LAB</p><h1>Gesture<span>Circuit</span><sup>3D</sup></h1></div>
       </div>
       <div class="top-actions">
         <div class="live-pill"><i></i><span id="app-status">LAB READY</span></div>
@@ -19,18 +19,303 @@ app.innerHTML = `
 
     <main class="main-grid">
       <aside class="panel parts-panel">
-        <div class="panel-head"><div><p class="eyebrow">BUILD</p><h2>Parts library</h2></div><span class="panel-index">01</span></div>
-        <p class="panel-subtitle">Add a component to your workbench.</p>
-        <div class="parts-list">
-          <button class="part-choice" data-add="battery"><span class="part-preview battery-preview"><i></i><b>+</b><small>−</small></span><span class="part-choice-copy"><strong>DC Battery</strong><small>9 V source</small></span><span class="plus">+</span></button>
-          <button class="part-choice" data-add="resistor"><span class="part-preview resistor-preview"><i></i><b></b><small></small></span><span class="part-choice-copy"><strong>Resistor</strong><small>470 Ω · axial</small></span><span class="plus">+</span></button>
-          <button class="part-choice" data-add="led"><span class="part-preview led-preview"><i></i><b></b></span><span class="part-choice-copy"><strong>LED</strong><small>2 V · polarized</small></span><span class="plus">+</span></button>
-          <button class="part-choice" data-add="bulb"><span class="part-preview bulb-preview"><i></i><b></b></span><span class="part-choice-copy"><strong>Mini bulb</strong><small>Visual load</small></span><span class="plus">+</span></button>
-          <button class="part-choice" data-add="switch"><span class="part-preview switch-preview"><i></i><b></b></span><span class="part-choice-copy"><strong>Toggle switch</strong><small>Open / closed</small></span><span class="plus">+</span></button>
-        </div>
-        <div class="tip-card"><span class="tip-icon">✦</span><div><strong>Workbench tip</strong><p>Use <b>Move</b> to arrange parts, <b>Wire</b> to connect terminals, and <b>Orbit</b> to rotate the 3D view.</p></div></div>
-        <div class="sidebar-foot"><span class="pulse-dot"></span> <span>LOCAL SIMULATION</span><span class="foot-sep">·</span><span>NO API KEY</span></div>
-      </aside>
+  <div class="panel-head">
+    <div>
+      <p class="eyebrow">BUILD</p>
+      <h2>Parts library</h2>
+    </div>
+    <span class="panel-index">01</span>
+  </div>
+
+  <p class="panel-subtitle" id="library-subtitle">
+    Add a component to your workbench.
+  </p>
+
+  <!-- LAB MODE SELECTOR -->
+  <div class="lab-mode-switch">
+    <label for="lab-mode">SELECT LAB</label>
+    <select id="lab-mode" class="lab-mode-select">
+      <option value="electronics" selected>Electronics Studio</option>
+      <option value="physics">Physics Practicals</option>
+    </select>
+  </div>
+
+  <!-- ELECTRONICS COMPONENTS -->
+  <div class="parts-list" id="electronics-library">
+
+    <button class="part-choice" data-add="battery">
+      <span class="part-preview battery-preview">
+        <i></i><b>+</b><small>−</small>
+      </span>
+      <span class="part-choice-copy">
+        <strong>DC Battery</strong>
+        <small>9 V source</small>
+      </span>
+      <span class="plus">+</span>
+    </button>
+
+    <button class="part-choice" data-add="resistor">
+      <span class="part-preview resistor-preview">
+        <i></i><b></b><small></small>
+      </span>
+      <span class="part-choice-copy">
+        <strong>Resistor</strong>
+        <small>470 Ω · axial</small>
+      </span>
+      <span class="plus">+</span>
+    </button>
+
+    <button class="part-choice" data-add="led">
+      <span class="part-preview led-preview">
+        <i></i><b></b>
+      </span>
+      <span class="part-choice-copy">
+        <strong>LED</strong>
+        <small>2 V · polarized</small>
+      </span>
+      <span class="plus">+</span>
+    </button>
+
+    <button class="part-choice" data-add="bulb">
+      <span class="part-preview bulb-preview">
+        <i></i><b></b>
+      </span>
+      <span class="part-choice-copy">
+        <strong>Mini bulb</strong>
+        <small>Visual load</small>
+      </span>
+      <span class="plus">+</span>
+    </button>
+
+    <button class="part-choice" data-add="switch">
+      <span class="part-preview switch-preview">
+        <i></i><b></b>
+      </span>
+      <span class="part-choice-copy">
+        <strong>Toggle switch</strong>
+        <small>Open / closed</small>
+      </span>
+      <span class="plus">+</span>
+    </button>
+
+  </div>
+
+  
+<!-- PHYSICS EXPERIMENTS -->
+<div id="physics-experiments">
+
+  <!-- SINGLE SLIT -->
+  <button
+    class="experiment-choice"
+    id="laser-diffraction-choice"
+    type="button"
+  >
+    <span class="experiment-icon">〰</span>
+    <span class="experiment-copy">
+      <strong>Laser Diffraction</strong>
+      <small>Single-slit experiment</small>
+    </span>
+    <span class="plus">+</span>
+  </button>
+
+  <!-- DOUBLE SLIT -->
+  <button
+    class="experiment-choice"
+    id="double-slit-choice"
+    type="button"
+  >
+    <span class="experiment-icon">〰</span>
+    <span class="experiment-copy">
+      <strong>Double-Slit Diffraction</strong>
+      <small>Young's double-slit experiment</small>
+    </span>
+    <span class="plus">+</span>
+  </button>
+
+  <!-- N-SLIT DIFFRACTION GRATING -->
+<button
+  class="experiment-choice"
+  id="n-slit-choice"
+  type="button"
+>
+  <span class="experiment-icon">〰</span>
+  <span class="experiment-copy">
+    <strong>N-Slit Diffraction Grating</strong>
+    <small>Multiple-slit interference · 3–20 slits</small>
+  </span>
+  <span class="plus">+</span>
+</button>
+
+  <!-- SINGLE-SLIT CONTROLS -->
+  <div
+    id="diffraction-controls"
+    class="diffraction-controls"
+    hidden
+  >
+    <h3>Experiment parameters</h3>
+
+    <label>
+      Wavelength
+      <input id="wavelength-value" class="parameter-inline-input" type="number" min="400" max="700" step="1" value="650"> nm
+    </label>
+    <input id="wavelength-slider"
+      type="range" min="400" max="700" step="1" value="650">
+
+    <label>
+      Slit width
+      <input id="slit-value" class="parameter-inline-input" type="number" min="0.05" max="0.30" step="0.01" value="0.10"> mm
+    </label>
+    <input id="slit-slider"
+      type="range" min="50" max="300" value="100">
+
+    <label>
+      Screen distance
+      <input id="distance-value" class="parameter-inline-input" type="number" min="1" max="4" step="0.01" value="2.00"> m
+    </label>
+    <input id="distance-slider"
+      type="range" min="100" max="400" value="200">
+  </div>
+
+  <!-- DOUBLE-SLIT CONTROLS -->
+  <div
+    id="double-slit-controls"
+    class="diffraction-controls"
+    hidden
+  >
+    <h3>Experiment parameters</h3>
+
+    <label>
+      Wavelength
+      <input id="ds-wavelength-value" class="parameter-inline-input" type="number" min="400" max="700" step="1" value="650"> nm
+    </label>
+    <input id="ds-wavelength-slider"
+      type="range" min="400" max="700" value="650">
+    <label>
+      Slit width
+      <input id="ds-width-value" class="parameter-inline-input" type="number" min="0.05" max="0.30" step="0.01" value="0.10"> mm
+    </label>
+    <input id="ds-width-slider"
+      type="range" min="50" max="300" value="100">
+    <label>
+      Slit separation
+      <input id="ds-separation-value" class="parameter-inline-input" type="number" min="0.20" max="1.50" step="0.01" value="0.50"> mm
+    </label>
+    <input id="ds-separation-slider"
+      type="range" min="200" max="1500" value="500">
+    <label>
+      Screen distance
+      <input id="ds-distance-value" class="parameter-inline-input" type="number" min="1" max="4" step="0.01" value="2.00"> m
+    </label>
+    <input id="ds-distance-slider"
+      type="range" min="100" max="400" value="200">
+  </div>
+
+  <!-- N-SLIT DIFFRACTION CONTROLS -->
+<div
+  id="n-slit-controls"
+  class="diffraction-controls"
+  hidden
+>
+  <h3>Grating parameters</h3>
+
+  <label>
+    Number of slits (N)
+    <input id="ns-count-value" class="parameter-inline-input" type="number" min="3" max="20" step="1" value="5">
+  </label>
+  <input
+    id="ns-count-slider"
+    type="range"
+    min="3"
+    max="20"
+    value="5"
+  >
+  
+  <label>
+    Wavelength
+    <input id="ns-wavelength-value" class="parameter-inline-input" type="number" min="400" max="700" step="1" value="650"> nm
+  </label>
+  <input
+    id="ns-wavelength-slider"
+    type="range"
+    min="400"
+    max="700"
+    value="650"
+  >
+
+  <label>
+    Slit width
+    <input id="ns-width-value" class="parameter-inline-input" type="number" min="0.05" max="0.30" step="0.01" value="0.10"> mm
+  </label>
+  <input
+    id="ns-width-slider"
+    type="range"
+    min="50"
+    max="300"
+    value="100"
+  >
+
+  <label>
+    Slit separation
+    <input id="ns-separation-value" class="parameter-inline-input" type="number" min="0.20" max="1.50" step="0.01" value="0.50"> mm
+  </label>
+  <input
+    id="ns-separation-slider"
+    type="range"
+    min="200"
+    max="1500"
+    value="500"
+  >
+
+  <label>
+    Screen distance
+    <input id="ns-distance-value" class="parameter-inline-input" type="number" min="1" max="4" step="0.01" value="2.00"> m
+  </label>
+  <input
+    id="ns-distance-slider"
+    type="range"
+    min="100"
+    max="400"
+    value="200"
+  >
+</div>
+
+  <!-- EXPERIMENT INTRODUCTION -->
+  <div class="experiment-preview">
+    <span class="eyebrow">FIRST EXPERIMENT</span>
+    <h3>Wave Optics</h3>
+    <p>
+      Explore diffraction and interference of light.
+      Adjust experimental parameters and observe
+      the resulting patterns.
+    </p>
+    <span class="experiment-status">
+      INTERACTIVE PRACTICALS
+    </span>
+  </div>
+
+</div>
+
+
+  <!-- ELECTRONICS TIP -->
+  <div class="tip-card" id="electronics-tip">
+    <span class="tip-icon">✦</span>
+
+    <div>
+      <strong>Workbench tip</strong>
+      <p>
+        Use <b>Move</b> to arrange parts, <b>Wire</b> to connect
+        terminals, and <b>Orbit</b> to rotate the 3D view.
+      </p>
+    </div>
+  </div>
+
+  <div class="sidebar-foot">
+    <span class="pulse-dot"></span>
+    <span>LOCAL SIMULATION</span>
+    <span class="foot-sep">·</span>
+    <span>NO API KEY</span>
+  </div>
+</aside>
 
       <section class="panel stage-panel">
         <div class="stage-topline">
@@ -98,46 +383,1124 @@ function showToast(message, kind = 'info') {
   toastTimeout = setTimeout(() => toast.className = 'toast', 2800);
 }
 
+// ==========================================
+// GESTURECIRCUIT - MULTI LAB SYSTEM
+// ==========================================
 
-/* -------------------------------------------------------
-   GESTURECIRCUIT: WEBCAM HAND TRACKING - STAGE 1
-   This adds tracking only. It does not control components
-   yet, so the existing mouse controls remain unchanged.
-------------------------------------------------------- */
+const labModeSelect = document.getElementById('lab-mode');
+
+const electronicsLibrary =
+  document.getElementById('electronics-library');
+
+const physicsExperiments =
+  document.getElementById('physics-experiments');
+
+const electronicsTip =
+  document.getElementById('electronics-tip');
+
+const librarySubtitle =
+  document.getElementById('library-subtitle');
+
+const laserDiffractionChoice =
+  document.getElementById('laser-diffraction-choice');
+
+labModeSelect.addEventListener('change', () => {
+  const isPhysics = labModeSelect.value === 'physics';
+  const mainGrid = document.querySelector('.main-grid');
+
+if (isPhysics) {
+  mainGrid.classList.add('physics-layout');
+} else {
+  mainGrid.classList.remove('physics-layout');
+  mainGrid.classList.remove('diffraction-active');
+}
+
+if (!isPhysics) {
+  mainGrid.classList.remove('diffraction-active');
+}
+
+  // Hide or restore the electronics scene without deleting it.
+  componentLayer.visible = !isPhysics;
+  wireLayer.visible = !isPhysics;
+  particleLayer.visible = !isPhysics;
+
+  // Selection rings are attached directly to the main scene.
+  components.forEach(item => {
+    if (item.selectionRing) {
+      item.selectionRing.visible = !isPhysics;
+    }
+  });
+
+  // Hide the experiment until the user selects it.
+  experimentLayer.visible = false;
+
+  document.getElementById('diffraction-controls').hidden = true;
+
+  electronicsLibrary.hidden = isPhysics;
+  electronicsTip.hidden = isPhysics;
+  physicsExperiments.hidden = !isPhysics;
+
+  librarySubtitle.textContent = isPhysics
+    ? 'Choose a physics experiment.'
+    : 'Add a component to your workbench.';
+
+  document.querySelector('.panel-head h2').textContent =
+    isPhysics ? 'Experiment library' : 'Parts library';
+
+  document.querySelector('.stage-topline h2').textContent =
+    isPhysics
+      ? 'Physics practical workspace'
+      : '3D circuit workbench';
+
+  document.querySelector('.stage-desc').textContent =
+    isPhysics
+      ? 'Explore interactive physics experiments in 3D.'
+      : 'Build it in 3D. Wire it up. Test the flow.';
+
+  document.querySelector('#app-status').textContent =
+    isPhysics ? 'PHYSICS LAB SELECTED' : 'LAB READY';
+
+  setMode(isPhysics ? 'orbit' : 'move');
+
+  showToast(
+    isPhysics
+      ? 'Electronics hidden. Physics lab ready!'
+      : 'Electronics Studio restored!',
+    'success'
+  );
+});
+// Set the correct layout when the page first loads
+const mainGrid = document.querySelector('.main-grid');
+
+const isPhysicsInitially =
+  labModeSelect.value === 'physics';
+  // Set correct sidebar visibility on initial page load
+physicsExperiments.hidden = !isPhysicsInitially;
+electronicsLibrary.hidden = isPhysicsInitially;
+electronicsTip.hidden = isPhysicsInitially;
+
+mainGrid.classList.toggle(
+  'physics-layout',
+  isPhysicsInitially
+);
+
+if (!isPhysicsInitially) {
+  mainGrid.classList.remove('diffraction-active');
+}
+
+laserDiffractionChoice.addEventListener('click', () => {
+  // Restore Single-Slit analysis.
+document.getElementById('diffraction-results').hidden = false;
+
+// Hide Double-Slit analysis.
+document.getElementById('double-slit-results').hidden = true;
+  document.querySelector('.main-grid')
+  .classList.add('diffraction-active');
+  doubleSlitChoice.classList.remove('active');
+  document.getElementById('n-slit-controls').hidden = true;
+document.getElementById('n-slit-results').hidden = true;
+document.getElementById('n-slit-choice').classList.remove('active');
+
+document.getElementById('double-slit-controls').hidden = true;
+document.getElementById('double-slit-results').hidden = true;
+
+  laserDiffractionChoice.classList.add('active');
+  experimentLayer.visible = true;
+
+  document.getElementById('diffraction-controls').hidden = false;
+
+  createLaserDiffraction();
+
+  document.querySelector('.stage-topline h2').textContent =
+    'Laser Diffraction Experiment';
+
+  document.querySelector('.stage-desc').textContent =
+    'Single-slit diffraction · Interactive physics practical';
+
+  document.querySelector('#app-status').textContent =
+    'DIFFRACTION EXPERIMENT';
+
+  showToast('3D Laser Diffraction apparatus loaded!', 'success');
+});
+
+
+// ==========================================
+// DOUBLE-SLIT EXPERIMENT SELECTION
+// ==========================================
+
+const doubleSlitChoice =
+  document.getElementById('double-slit-choice');
+
+doubleSlitChoice.addEventListener('click', () => {
+
+  // Hide Single-Slit analysis.
+document.getElementById('diffraction-results').hidden = true;
+
+// Show Double-Slit analysis.
+document.getElementById('double-slit-results').hidden = false;
+
+  // Update active experiment card.
+  laserDiffractionChoice.classList.remove('active');
+  document.getElementById('n-slit-controls').hidden = true;
+document.getElementById('n-slit-results').hidden = true;
+document.getElementById('n-slit-choice').classList.remove('active');
+  doubleSlitChoice.classList.add('active');
+
+  // Show the correct controls and analysis.
+  document.getElementById('diffraction-controls').hidden = true;
+  document.getElementById('double-slit-controls').hidden = false;
+
+  document.getElementById('double-slit-results').hidden = false;
+
+  // Load the Double-Slit apparatus.
+  experimentLayer.visible = true;
+  createDoubleSlitDiffraction();
+
+  // Update workspace headings.
+  document.querySelector('.stage-topline h2').textContent =
+    'Double-Slit Diffraction Experiment';
+
+  document.querySelector('.stage-desc').textContent =
+    "Young's double-slit experiment · Interactive physics practical";
+
+  document.getElementById('app-status').textContent =
+    'DOUBLE-SLIT EXPERIMENT';
+
+  showToast(
+    '3D Double-Slit apparatus loaded!',
+    'success'
+  );
+});
+
+// ==========================================
+// N-SLIT EXPERIMENT SELECTION
+// ==========================================
+
+const nSlitChoice =
+  document.getElementById('n-slit-choice');
+
+nSlitChoice.addEventListener('click', () => {
+
+  // Update active experiment card.
+  laserDiffractionChoice.classList.remove('active');
+  doubleSlitChoice.classList.remove('active');
+  nSlitChoice.classList.add('active');
+
+  // Hide Single-Slit and Double-Slit controls/results.
+  document.getElementById('diffraction-controls').hidden = true;
+  document.getElementById('diffraction-results').hidden = true;
+
+  document.getElementById('double-slit-controls').hidden = true;
+  document.getElementById('double-slit-results').hidden = true;
+
+  // Show N-Slit controls and analysis.
+  document.getElementById('n-slit-controls').hidden = false;
+  document.getElementById('n-slit-results').hidden = false;
+
+  // Activate the physics workspace.
+  document.querySelector('.main-grid')
+    .classList.add('diffraction-active');
+
+  experimentLayer.visible = true;
+
+  // Build the N-Slit apparatus.
+  createNSlitDiffraction();
+
+  // Update workspace headings.
+  document.querySelector('.stage-topline h2').textContent =
+    'N-Slit Diffraction Grating';
+
+  document.querySelector('.stage-desc').textContent =
+    'Multiple-slit interference · Interactive physics practical';
+
+  document.getElementById('app-status').textContent =
+    'N-SLIT GRATING EXPERIMENT';
+
+  showToast(
+    'N-Slit diffraction grating loaded!',
+    'success'
+  );
+});
+
+
+// ==========================================
+// N-SLIT DIFFRACTION SETTINGS
+// Independent from Single-Slit and Double-Slit
+// ==========================================
+
+const nSlitSettings = {
+  count: 5,
+  wavelength: 650,  // nm
+  slitWidth: 0.10,  // mm
+  separation: 0.50, // mm
+  distance: 2.0     // metres
+};
+
+
+// ==========================================
+// N-SLIT CONTROL ELEMENTS
+// ==========================================
+
+const nsCountSlider =
+  document.getElementById('ns-count-slider');
+
+const nsWavelengthSlider =
+  document.getElementById('ns-wavelength-slider');
+
+const nsWidthSlider =
+  document.getElementById('ns-width-slider');
+
+const nsSeparationSlider =
+  document.getElementById('ns-separation-slider');
+
+const nsDistanceSlider =
+  document.getElementById('ns-distance-slider');
+
+
+// Update displayed values and refresh the experiment.
+function updateNSlitControls() {
+
+  nSlitSettings.count = Number(nsCountSlider.value);
+  nSlitSettings.wavelength = Number(nsWavelengthSlider.value);
+  nSlitSettings.slitWidth = Number(nsWidthSlider.value) / 1000;
+  nSlitSettings.separation = Number(nsSeparationSlider.value) / 1000;
+  nSlitSettings.distance = Number(nsDistanceSlider.value) / 100;
+
+  document.getElementById('ns-count-value').value = nSlitSettings.count;
+  document.getElementById('ns-wavelength-value').value = nSlitSettings.wavelength;
+  document.getElementById('ns-width-value').value = nSlitSettings.slitWidth.toFixed(2);
+  document.getElementById('ns-separation-value').value = nSlitSettings.separation.toFixed(2);
+  document.getElementById('ns-distance-value').value = nSlitSettings.distance.toFixed(2);
+
+  if (typeof updateNSlitPattern === 'function') {
+    updateNSlitPattern();
+  }
+
+  if (typeof rebuildNSlitApparatus === 'function') {
+    rebuildNSlitApparatus();
+  }
+}
+// Connect N-Slit sliders to their number inputs.
+nsCountSlider.addEventListener('input', updateNSlitControls);
+nsWavelengthSlider.addEventListener('input', updateNSlitControls);
+nsWidthSlider.addEventListener('input', updateNSlitControls);
+nsSeparationSlider.addEventListener('input', updateNSlitControls);
+nsDistanceSlider.addEventListener('input', updateNSlitControls);
+
+// ==========================================
+// N-SLIT TYPABLE PARAMETER INPUTS
+// ==========================================
+
+const nSlitNumberInputs = [
+  { id: 'ns-count-value', slider: nsCountSlider, min: 3, max: 20, convert: v => v },
+  { id: 'ns-wavelength-value', slider: nsWavelengthSlider, min: 400, max: 700, convert: v => v },
+  { id: 'ns-width-value', slider: nsWidthSlider, min: 0.05, max: 0.30, convert: v => v * 1000 },
+  { id: 'ns-separation-value', slider: nsSeparationSlider, min: 0.20, max: 1.50, convert: v => v * 1000 },
+  { id: 'ns-distance-value', slider: nsDistanceSlider, min: 1, max: 4, convert: v => v * 100 }
+];
+
+nSlitNumberInputs.forEach(item => {
+
+  const input = document.getElementById(item.id);
+
+  input.addEventListener('change', () => {
+
+    if (input.value.trim() === '') return;
+
+    let value = Number(input.value);
+    if (!Number.isFinite(value)) return;
+
+    value = Math.max(item.min, Math.min(item.max, value));
+
+    input.value = value;
+    item.slider.value = Math.round(item.convert(value));
+
+    updateNSlitControls();
+  });
+
+});
+// ==========================================
+// SINGLE-SLIT PARAMETER CONTROLS
+// ==========================================
+
+const wavelengthSlider = document.getElementById('wavelength-slider');
+const slitSlider = document.getElementById('slit-slider');
+const distanceSlider = document.getElementById('distance-slider');
+
+const wavelengthInput = document.getElementById('wavelength-value');
+const slitInput = document.getElementById('slit-value');
+const distanceInput = document.getElementById('distance-value');
+
+// Update values when sliders move.
+function updateSingleSlitControls() {
+
+  diffractionSettings.wavelength = Number(wavelengthSlider.value);
+  diffractionSettings.slitWidth = Number(slitSlider.value) / 1000;
+  diffractionSettings.distance = Number(distanceSlider.value) / 100;
+
+  wavelengthInput.value = diffractionSettings.wavelength;
+  slitInput.value = diffractionSettings.slitWidth.toFixed(2);
+  distanceInput.value = diffractionSettings.distance.toFixed(2);
+
+  updateDiffractionPattern();
+}
+
+[wavelengthSlider, slitSlider, distanceSlider].forEach(slider => {
+  slider.addEventListener('input', updateSingleSlitControls);
+});
+
+// Update sliders when values are typed.
+[
+  { input: wavelengthInput, slider: wavelengthSlider, min: 400, max: 700, convert: v => v },
+  { input: slitInput, slider: slitSlider, min: 0.05, max: 0.30, convert: v => v * 1000 },
+  { input: distanceInput, slider: distanceSlider, min: 1, max: 4, convert: v => v * 100 }
+].forEach(item => {
+
+  item.input.addEventListener('change', () => {
+
+    if (item.input.value.trim() === '') return;
+
+    let value = Number(item.input.value);
+    if (!Number.isFinite(value)) return;
+
+    value = Math.max(item.min, Math.min(item.max, value));
+
+    item.slider.value = Math.round(item.convert(value));
+
+    updateSingleSlitControls();
+  });
+
+});
+
+// ==========================================
+// DIFFRACTION EXPERIMENT RESULTS PANEL
+// Create this only once.
+// ==========================================
+
+const diffractionControls = document.getElementById(
+  'diffraction-controls'
+);
+
+if (!document.getElementById('diffraction-results')) {
+  diffractionControls.insertAdjacentHTML('beforeend', `
+    <div class="diffraction-results" id="diffraction-results">
+
+      <div class="results-heading">
+        <span class="eyebrow">LIVE ANALYSIS</span>
+        <h3>Experimental observations</h3>
+      </div>
+
+      <div class="diffraction-metrics">
+        <div class="diffraction-metric">
+          <small>First minimum</small>
+          <strong id="first-minimum">—</strong>
+        </div>
+
+        <div class="diffraction-metric">
+          <small>Central maximum width</small>
+          <strong id="central-width">—</strong>
+        </div>
+
+        <div class="diffraction-metric">
+          <small>Second minimum</small>
+          <strong id="second-minimum">—</strong>
+        </div>
+
+        <div class="diffraction-metric">
+          <small>Third minimum</small>
+          <strong id="third-minimum">—</strong>
+        </div>
+      </div>
+
+      <div class="diffraction-graph-card">
+        <h4>Intensity distribution</h4>
+        <canvas id="diffraction-graph" width="700" height="280"></canvas>
+        <div class="graph-axis-labels">
+          <span>Position on screen (mm)</span>
+          <span>Relative intensity (%)</span>
+        </div>
+      </div>
+
+      <div class="measurement-card">
+        <h4>Experimental wavelength calculation</h4>
+
+        <label for="measured-minimum">
+          Measured first minimum distance (mm)
+        </label>
+
+        <input
+          id="measured-minimum"
+          type="number"
+          min="0.01"
+          step="0.01"
+          value="13.00"
+        >
+
+        <div class="measurement-result">
+          <span>Calculated wavelength</span>
+          <strong id="calculated-wavelength">—</strong>
+        </div>
+
+        <div class="measurement-result">
+          <span>Percentage error</span>
+          <strong id="wavelength-error">—</strong>
+        </div>
+      </div>
+
+      <div class="diffraction-formula">
+        <small>THEORETICAL RELATION</small>
+        <p>a sin θ = mλ</p>
+        <p>I / I₀ = (sin β / β)²</p>
+      </div>
+
+    </div>
+  `);
+
+// Move Live Analysis out of the narrow left sidebar
+// and place it underneath the 3D viewport.
+const diffractionResults = document.getElementById(
+  'diffraction-results'
+);
+
+const stagePanel = document.querySelector('.stage-panel');
+const statStrip = stagePanel.querySelector('.stat-strip');
+
+if (diffractionResults && statStrip) {
+  stagePanel.insertBefore(diffractionResults, statStrip);
+}
+
+}
+
+document.getElementById('measured-minimum')
+  .addEventListener('input', updateDiffractionPattern);
+
+
+// ==========================================
+// DOUBLE-SLIT LIVE ANALYSIS PANEL
+// ==========================================
+
+const doubleSlitControls = document.getElementById(
+  'double-slit-controls'
+);
+
+if (!document.getElementById('double-slit-results')) {
+
+  doubleSlitControls.insertAdjacentHTML('beforeend', `
+    <div class="diffraction-results" id="double-slit-results" hidden>
+
+      <div class="results-heading">
+        <span class="eyebrow">LIVE ANALYSIS</span>
+        <h3>Experimental observations</h3>
+      </div>
+
+      <div class="diffraction-metrics">
+
+        <div class="diffraction-metric">
+          <small>Fringe spacing</small>
+          <strong id="ds-fringe-spacing">—</strong>
+        </div>
+
+        <div class="diffraction-metric">
+          <small>First bright fringe</small>
+          <strong id="ds-first-bright">—</strong>
+        </div>
+
+        <div class="diffraction-metric">
+          <small>Second bright fringe</small>
+          <strong id="ds-second-bright">—</strong>
+        </div>
+
+        <div class="diffraction-metric">
+          <small>First dark fringe</small>
+          <strong id="ds-first-dark">—</strong>
+        </div>
+
+      </div>
+
+      <div class="diffraction-graph-card">
+        <h4>Intensity distribution</h4>
+
+        <canvas
+          id="double-slit-graph"
+          width="700"
+          height="280">
+        </canvas>
+
+        <div class="graph-axis-labels">
+          <span>Position on screen (mm)</span>
+          <span>Relative intensity (%)</span>
+        </div>
+      </div>
+
+      <div class="measurement-card">
+
+        <h4>Experimental wavelength calculation</h4>
+
+        <label for="ds-measured-fringe">
+          Measured fringe spacing (mm)
+        </label>
+
+        <input
+          id="ds-measured-fringe"
+          type="number"
+          min="0.01"
+          step="0.01"
+          value="2.60"
+        >
+
+        <div class="measurement-result">
+          <span>Calculated wavelength</span>
+          <strong id="ds-calculated-wavelength">—</strong>
+        </div>
+
+        <div class="measurement-result">
+          <span>Percentage error</span>
+          <strong id="ds-wavelength-error">—</strong>
+        </div>
+
+      </div>
+
+      <div class="diffraction-formula">
+        <small>THEORETICAL RELATIONS</small>
+        <p>Δy = λD / d</p>
+        <p>I / I₀ = (sin β / β)² cos² α</p>
+      </div>
+
+    </div>
+  `);
+
+  // Move the analysis panel below the 3D viewport.
+  const dsResults = document.getElementById(
+    'double-slit-results'
+  );
+
+  const stagePanel = document.querySelector('.stage-panel');
+  const statStrip = stagePanel.querySelector('.stat-strip');
+
+  if (statStrip) {
+    stagePanel.insertBefore(dsResults, statStrip);
+  }
+}
+
+// ==========================================
+// N-SLIT LIVE ANALYSIS PANEL
+// ==========================================
+
+const nSlitControls = document.getElementById('n-slit-controls');
+
+if (!document.getElementById('n-slit-results')) {
+
+  nSlitControls.insertAdjacentHTML('beforeend', `
+    <div class="diffraction-results" id="n-slit-results" hidden>
+
+      <div class="results-heading">
+        <span class="eyebrow">LIVE ANALYSIS</span>
+        <h3>Grating observations</h3>
+      </div>
+
+      <div class="diffraction-metrics">
+
+        <div class="diffraction-metric">
+          <small>Number of slits</small>
+          <strong id="ns-result-count">—</strong>
+        </div>
+
+        <div class="diffraction-metric">
+          <small>Grating spacing</small>
+          <strong id="ns-result-spacing">—</strong>
+        </div>
+
+        <div class="diffraction-metric">
+          <small>Principal fringe spacing</small>
+          <strong id="ns-fringe-spacing">—</strong>
+        </div>
+
+        <div class="diffraction-metric">
+          <small>First-order maximum</small>
+          <strong id="ns-first-order">—</strong>
+        </div>
+
+      </div>
+
+      <div class="diffraction-graph-card">
+        <h4>N-Slit intensity distribution</h4>
+
+        <canvas
+          id="n-slit-graph"
+          width="700"
+          height="280">
+        </canvas>
+
+        <div class="graph-axis-labels">
+          <span>Position on screen (mm)</span>
+          <span>Relative intensity (%)</span>
+        </div>
+      </div>
+
+      <div class="measurement-card">
+
+        <h4>Experimental wavelength calculation</h4>
+
+        <label for="ns-measured-fringe">
+          Measured principal fringe spacing (mm)
+        </label>
+
+        <input
+          id="ns-measured-fringe"
+          type="number"
+          min="0.01"
+          step="0.01"
+          value="2.60"
+        >
+
+        <div class="measurement-result">
+          <span>Calculated wavelength</span>
+          <strong id="ns-calculated-wavelength">—</strong>
+        </div>
+
+        <div class="measurement-result">
+          <span>Percentage error</span>
+          <strong id="ns-wavelength-error">—</strong>
+        </div>
+
+      </div>
+
+      <div class="diffraction-formula">
+        <small>THEORETICAL RELATIONS</small>
+        <p>d sin θ = mλ</p>
+        <p>I ∝ (sin β / β)² (sin Nα / sin α)²</p>
+      </div>
+
+    </div>
+  `);
+
+  // Place analysis below the 3D workspace.
+  const nsResults = document.getElementById('n-slit-results');
+  const stagePanel = document.querySelector('.stage-panel');
+  const statStrip = stagePanel.querySelector('.stat-strip');
+
+  if (statStrip) {
+    stagePanel.insertBefore(nsResults, statStrip);
+  }
+}
+
+// ==========================================
+// N-SLIT SCIENTIFIC PHYSICS ENGINE
+// Independent from other diffraction experiments
+// ==========================================
+
+let nSlitPattern = [];
+let nSlitMaterials = [];
+
+function getNSlitIntensity(y) {
+
+  const wavelength = nSlitSettings.wavelength * 1e-9;
+  const slitWidth = nSlitSettings.slitWidth * 1e-3;
+  const separation = nSlitSettings.separation * 1e-3;
+  const distance = nSlitSettings.distance;
+  const N = nSlitSettings.count;
+
+  // Exact screen geometry.
+  const sinTheta =
+    y / Math.sqrt(distance * distance + y * y);
+
+  const beta =
+    Math.PI * slitWidth * sinTheta / wavelength;
+
+  const alpha =
+    Math.PI * separation * sinTheta / wavelength;
+
+  // Single-slit diffraction envelope.
+  const envelope = Math.abs(beta) < 1e-10
+    ? 1
+    : Math.pow(Math.sin(beta) / beta, 2);
+
+  // N-slit interference factor.
+  let arrayFactor;
+
+  if (Math.abs(Math.sin(alpha)) < 1e-8) {
+    arrayFactor = N * N;
+  } else {
+    arrayFactor =
+      Math.pow(Math.sin(N * alpha) / Math.sin(alpha), 2);
+  }
+
+  // Normalize central maximum to 1.
+  return Math.max(0, envelope * arrayFactor / (N * N));
+}
+
+
+// ==========================================
+// UPDATE N-SLIT SCREEN AND ANALYSIS
+// ==========================================
+
+function updateNSlitPattern() {
+
+  const wavelength = nSlitSettings.wavelength * 1e-9;
+  const separation = nSlitSettings.separation * 1e-3;
+  const distance = nSlitSettings.distance;
+  const N = nSlitSettings.count;
+
+  const visualScale = 30;
+
+  // Update 3D observation screen.
+  nSlitPattern.forEach((stripe, index) => {
+
+    const y = stripe.userData.screenZ / visualScale;
+    const intensity = getNSlitIntensity(y);
+
+    nSlitMaterials[index].opacity =
+      Math.min(1, Math.pow(intensity, 0.72) * 1.15);
+
+  });
+
+  // Theoretical principal maximum spacing.
+  const fringeSpacing =
+    wavelength * distance / separation;
+
+  const formatMM = value =>
+    `${(value * 1000).toFixed(2)} mm`;
+
+  const setText = (id, value) => {
+    const element = document.getElementById(id);
+    if (element) element.textContent = value;
+  };
+
+  setText('ns-result-count', N);
+  setText(
+    'ns-result-spacing',
+    `${nSlitSettings.separation.toFixed(2)} mm`
+  );
+  setText('ns-fringe-spacing', formatMM(fringeSpacing));
+  setText('ns-first-order', formatMM(fringeSpacing));
+
+  // Draw the live graph.
+  drawNSlitGraph();
+
+  // Update experimental wavelength.
+  updateNSlitWavelength();
+}
+
+
+// ==========================================
+// N-SLIT LIVE INTENSITY GRAPH
+// ==========================================
+
+function drawNSlitGraph() {
+
+  const canvas = document.getElementById('n-slit-graph');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+
+  const width = canvas.width;
+  const height = canvas.height;
+
+  const left = 55;
+  const right = 18;
+  const top = 18;
+  const bottom = 38;
+
+  const graphWidth = width - left - right;
+  const graphHeight = height - top - bottom;
+
+  const screenHalfWidth = 1.8 / 30;
+
+  ctx.clearRect(0, 0, width, height);
+
+  ctx.fillStyle = '#30332B';
+  ctx.fillRect(0, 0, width, height);
+
+  // Grid.
+  ctx.strokeStyle = '#555747';
+  ctx.lineWidth = 1;
+
+  for (let i = 0; i <= 4; i++) {
+    const y = top + graphHeight * i / 4;
+
+    ctx.beginPath();
+    ctx.moveTo(left, y);
+    ctx.lineTo(width - right, y);
+    ctx.stroke();
+  }
+
+  // Y-axis labels.
+  ctx.fillStyle = '#B7B5A7';
+  ctx.font = '13px Arial';
+  ctx.textAlign = 'right';
+
+  for (let i = 0; i <= 4; i++) {
+    const value = 100 - i * 25;
+    const y = top + graphHeight * i / 4;
+
+    ctx.fillText(`${value}%`, left - 8, y + 4);
+  }
+
+  // X-axis labels.
+  ctx.textAlign = 'center';
+
+  for (let i = 0; i <= 4; i++) {
+    const fraction = i / 4;
+
+    const position =
+      (-screenHalfWidth + 2 * screenHalfWidth * fraction) * 1000;
+
+    const x = left + graphWidth * fraction;
+
+    ctx.fillText(position.toFixed(0), x, height - 12);
+  }
+
+  // Actual N-slit intensity curve.
+  ctx.beginPath();
+
+  for (let i = 0; i <= 1200; i++) {
+
+    const fraction = i / 1200;
+
+    const position =
+      -screenHalfWidth +
+      fraction * 2 * screenHalfWidth;
+
+    const intensity = getNSlitIntensity(position);
+
+    const x = left + fraction * graphWidth;
+    const y = top + (1 - intensity) * graphHeight;
+
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+
+  ctx.strokeStyle = '#C1AD8B';
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+
+  // Central maximum marker.
+  const centerX = left + graphWidth / 2;
+
+  ctx.strokeStyle = '#92916B';
+  ctx.setLineDash([4, 4]);
+
+  ctx.beginPath();
+  ctx.moveTo(centerX, top);
+  ctx.lineTo(centerX, top + graphHeight);
+  ctx.stroke();
+
+  ctx.setLineDash([]);
+}
+
+
+// ==========================================
+// N-SLIT EXPERIMENTAL WAVELENGTH
+// ==========================================
+
+function updateNSlitWavelength() {
+
+  const input = document.getElementById('ns-measured-fringe');
+  if (!input) return;
+
+  const measuredMM = Number(input.value);
+
+  const wavelengthOutput =
+    document.getElementById('ns-calculated-wavelength');
+
+  const errorOutput =
+    document.getElementById('ns-wavelength-error');
+
+  if (!Number.isFinite(measuredMM) || measuredMM <= 0) {
+    wavelengthOutput.textContent = 'Enter a valid value';
+    errorOutput.textContent = '—';
+    return;
+  }
+
+  const separation = nSlitSettings.separation * 1e-3;
+  const distance = nSlitSettings.distance;
+
+  // Convert measured adjacent principal maxima spacing to metres.
+  const measuredSpacing = measuredMM / 1000;
+
+  // Small-angle grating relation: Δy = λL / d.
+  const calculatedWavelength =
+    measuredSpacing * separation / distance;
+
+  const actualWavelength =
+    nSlitSettings.wavelength * 1e-9;
+
+  const error =
+    Math.abs(calculatedWavelength - actualWavelength) /
+    actualWavelength * 100;
+
+  wavelengthOutput.textContent =
+    `${(calculatedWavelength * 1e9).toFixed(2)} nm`;
+
+  errorOutput.textContent =
+    `${error.toFixed(2)}%`;
+}
+
+
+// Update calculation when measured spacing changes.
+document.getElementById('ns-measured-fringe')
+  .addEventListener('input', updateNSlitWavelength);
+
+
+// ==========================================
+// DOUBLE-SLIT MEASUREMENT INPUT
+// ==========================================
+
+document.getElementById('ds-measured-fringe')
+  .addEventListener('input', () => {
+
+    updateDoubleSlitWavelength(
+      doubleSlitSettings.separation * 1e-3,
+      doubleSlitSettings.distance,
+      doubleSlitSettings.wavelength * 1e-9
+    );
+
+  });
+
+// ==========================================
+// DOUBLE-SLIT PARAMETER CONTROLS
+// ==========================================
+
+// ==========================================
+// DOUBLE-SLIT PARAMETER CONTROLS
+// ==========================================
+
+const dsWavelengthSlider = document.getElementById('ds-wavelength-slider');
+const dsWidthSlider = document.getElementById('ds-width-slider');
+const dsSeparationSlider = document.getElementById('ds-separation-slider');
+const dsDistanceSlider = document.getElementById('ds-distance-slider');
+
+const dsWavelengthInput = document.getElementById('ds-wavelength-value');
+const dsWidthInput = document.getElementById('ds-width-value');
+const dsSeparationInput = document.getElementById('ds-separation-value');
+const dsDistanceInput = document.getElementById('ds-distance-value');
+
+function updateDoubleSlitControls() {
+
+  doubleSlitSettings.wavelength = Number(dsWavelengthSlider.value);
+  doubleSlitSettings.slitWidth = Number(dsWidthSlider.value) / 1000;
+  doubleSlitSettings.separation = Number(dsSeparationSlider.value) / 1000;
+  doubleSlitSettings.distance = Number(dsDistanceSlider.value) / 100;
+
+  dsWavelengthInput.value = doubleSlitSettings.wavelength;
+  dsWidthInput.value = doubleSlitSettings.slitWidth.toFixed(2);
+  dsSeparationInput.value = doubleSlitSettings.separation.toFixed(2);
+  dsDistanceInput.value = doubleSlitSettings.distance.toFixed(2);
+
+  updateDoubleSlitPattern();
+}
+
+// Slider to input synchronization.
+[
+  dsWavelengthSlider,
+  dsWidthSlider,
+  dsSeparationSlider,
+  dsDistanceSlider
+].forEach(slider => {
+  slider.addEventListener('input', updateDoubleSlitControls);
+});
+
+// Input to slider synchronization.
+[
+  { input: dsWavelengthInput, slider: dsWavelengthSlider, min: 400, max: 700, convert: v => v },
+  { input: dsWidthInput, slider: dsWidthSlider, min: 0.05, max: 0.30, convert: v => v * 1000 },
+  { input: dsSeparationInput, slider: dsSeparationSlider, min: 0.20, max: 1.50, convert: v => v * 1000 },
+  { input: dsDistanceInput, slider: dsDistanceSlider, min: 1, max: 4, convert: v => v * 100 }
+].forEach(item => {
+
+  item.input.addEventListener('change', () => {
+
+    if (item.input.value.trim() === '') return;
+
+    let value = Number(item.input.value);
+    if (!Number.isFinite(value)) return;
+
+    value = Math.max(item.min, Math.min(item.max, value));
+
+    item.slider.value = Math.round(item.convert(value));
+
+    updateDoubleSlitControls();
+  });
+
+});
+
+
 
 viewport.insertAdjacentHTML("beforeend", `
-  <section class="gc-hand-panel">
-    <div class="gc-hand-heading">
-      <div>
-        <span class="gc-hand-eyebrow">COMPUTER VISION</span>
-        <strong>Hand tracking</strong>
-      </div>
-      <span id="gc-hand-status" class="gc-hand-status">OFFLINE</span>
-    </div>
+  <section class="gc-hand-panel is-collapsed" id="gc-hand-panel">
 
-    <div id="gc-hand-preview" class="gc-hand-preview">
-      <video id="gc-hand-video" autoplay muted playsinline></video>
-      <canvas id="gc-hand-canvas"></canvas>
-      <div id="gc-hand-placeholder" class="gc-hand-placeholder">
-        <span>✋</span>
-        <small>Enable your camera to begin</small>
-      </div>
-    </div>
-
-    <div class="gc-hand-readout">
-      <span id="gc-hand-gesture">Gesture: —</span>
-      <span id="gc-hand-count">Hands: 0</span>
-    </div>
-
-    <button id="gc-hand-toggle" class="gc-hand-button">
-      Enable camera
+    <button
+      id="gc-hand-panel-toggle"
+      class="gc-hand-panel-tab"
+      type="button"
+      aria-label="Open hand tracking panel"
+      aria-expanded="false"
+      title="Hand tracking"
+    >
+      <span class="gc-hand-tab-icon">◉</span>
+      <span class="gc-hand-tab-arrow">‹</span>
     </button>
 
-    <p class="gc-hand-note">
-      Your webcam feed is processed in the browser.
-    </p>
+    <div class="gc-hand-panel-content">
+
+      <div class="gc-hand-heading">
+        <div>
+          <span class="gc-hand-eyebrow">COMPUTER VISION</span>
+          <strong>Hand tracking</strong>
+        </div>
+        <span id="gc-hand-status" class="gc-hand-status">OFFLINE</span>
+      </div>
+
+      <div id="gc-hand-preview" class="gc-hand-preview">
+        <video id="gc-hand-video" autoplay muted playsinline></video>
+        <canvas id="gc-hand-canvas"></canvas>
+        <div id="gc-hand-placeholder" class="gc-hand-placeholder">
+          <span>✋</span>
+          <small>Enable your camera to begin</small>
+        </div>
+      </div>
+
+      <div class="gc-hand-readout">
+        <span id="gc-hand-gesture">Gesture: —</span>
+        <span id="gc-hand-count">Hands: 0</span>
+      </div>
+
+      <button id="gc-hand-toggle" class="gc-hand-button">
+        Enable camera
+      </button>
+
+      <p class="gc-hand-note">
+        Your webcam feed is processed in the browser.
+      </p>
+
+    </div>
   </section>
 `);
+
+const handPanel = document.getElementById('gc-hand-panel');
+const handPanelToggle = document.getElementById(
+  'gc-hand-panel-toggle'
+);
+
+handPanelToggle.addEventListener('click', () => {
+  const isCollapsed = handPanel.classList.toggle('is-collapsed');
+
+  handPanelToggle.setAttribute(
+    'aria-expanded',
+    String(!isCollapsed)
+  );
+
+  handPanelToggle.setAttribute(
+    'aria-label',
+    isCollapsed
+      ? 'Open hand tracking panel'
+      : 'Close hand tracking panel'
+  );
+
+  handPanelToggle.querySelector('.gc-hand-tab-arrow')
+    .textContent = isCollapsed ? '‹' : '›';
+});
+
 
 const gcVideo = document.querySelector("#gc-hand-video");
 const gcCanvas = document.querySelector("#gc-hand-canvas");
@@ -672,6 +2035,1366 @@ edgeBar(0.035, 0.035, 8.0, 6.015, 0.105, 0);
 const componentLayer = new THREE.Group(); scene.add(componentLayer);
 const wireLayer = new THREE.Group(); scene.add(wireLayer);
 const particleLayer = new THREE.Group(); scene.add(particleLayer);
+// ==========================================
+// PHYSICS EXPERIMENT LAYER
+// ==========================================
+
+const experimentLayer = new THREE.Group();
+scene.add(experimentLayer);
+
+experimentLayer.visible = false;
+
+let diffractionActive = false;
+let diffractionPattern = [];
+let diffractionMaterials = [];
+
+let diffractionSettings = {
+  wavelength: 650,
+  slitWidth: 0.10,
+  distance: 2.0
+};
+
+
+let doubleSlitSettings = {
+  wavelength: 650,
+  slitWidth: 0.10,
+  separation: 0.50,
+  distance: 2.0
+};
+
+// ==========================================
+// LASER DIFFRACTION 3D APPARATUS
+// ==========================================
+
+function createDiffractionBox(width, height, depth, x, y, z, color, metalness = 0.3) {
+  const material = new THREE.MeshStandardMaterial({
+    color,
+    metalness,
+    roughness: 0.35
+  });
+
+  const mesh = new THREE.Mesh(
+    new THREE.BoxGeometry(width, height, depth),
+    material
+  );
+
+  mesh.position.set(x, y, z);
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+
+  experimentLayer.add(mesh);
+  return mesh;
+}
+
+function createDiffractionCylinder(radius, length, x, y, z, color) {
+  const material = new THREE.MeshStandardMaterial({
+    color,
+    metalness: 0.55,
+    roughness: 0.3
+  });
+
+  const mesh = new THREE.Mesh(
+    new THREE.CylinderGeometry(radius, radius, length, 32),
+    material
+  );
+
+  // Cylinder's original axis is Y. Rotate to point along X.
+  mesh.rotation.z = Math.PI / 2;
+  mesh.position.set(x, y, z);
+
+  experimentLayer.add(mesh);
+  return mesh;
+}
+
+function createLaserDiffraction() {
+  // Avoid duplicate apparatus
+  experimentLayer.clear();
+  diffractionPattern = [];
+  diffractionMaterials = [];
+
+  // Workbench support stands
+  createDiffractionBox(
+    0.12, 0.8, 0.12,
+    -4, 0.5, 0,
+    0x77765a
+  );
+
+  createDiffractionBox(
+    0.12, 0.8, 0.12,
+    -1.5, 0.5, 0,
+    0x77765a
+  );
+
+  createDiffractionBox(
+    0.12, 0.8, 0.12,
+    3.5, 0.5, 0,
+    0x77765a
+  );
+
+  // LASER SOURCE
+  createDiffractionBox(
+    0.8, 0.42, 0.55,
+    -4, 1.05, 0,
+    0x45483a,
+    0.7
+  );
+
+  createDiffractionCylinder(
+    0.12, 0.65,
+    -3.45, 1.05, 0,
+    0x92916b
+  );
+
+  // Laser aperture
+  const laserGlow = new THREE.Mesh(
+    new THREE.CircleGeometry(0.11, 32),
+    new THREE.MeshBasicMaterial({
+      color: 0xff2222
+    })
+  );
+
+  laserGlow.rotation.y = Math.PI / 2;
+  laserGlow.position.set(-3.1, 1.05, 0);
+  experimentLayer.add(laserGlow);
+
+
+  // ORIGINAL SINGLE-SLIT LASER BEAM
+  const beamMaterial = new THREE.MeshBasicMaterial({
+    color: 0xff2020,
+    transparent: true,
+    opacity: 0.38,
+    depthWrite: false
+  });
+
+  const beam = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.035, 0.035, 2.7, 24),
+    beamMaterial
+  );
+
+  beam.rotation.z = Math.PI / 2;
+  beam.position.set(-2.05, 1.05, 0);
+  experimentLayer.add(beam);
+  
+
+ // TWO SLIT PLATES — PHYSICALLY SCALED
+
+const totalSlitHolderWidth = 1.8;
+
+// Convert experimental slit width into Three.js units.
+const slitGap =
+  diffractionSettings.slitWidth * 0.001 * 30;
+
+const plateDepth =
+  (totalSlitHolderWidth - slitGap) / 2;
+
+const plateOffset =
+  (plateDepth + slitGap) / 2;
+
+// Left plate
+createDiffractionBox(
+  0.18, 2.1, plateDepth,
+  -1.38, 1.25, -plateOffset,
+  0x242621,
+  0.75
+);
+
+// Right plate
+createDiffractionBox(
+  0.18, 2.1, plateDepth,
+  -1.38, 1.25, plateOffset,
+  0x242621,
+  0.75
+);
+
+  // SCREEN FRAME
+  createDiffractionBox(
+    0.18, 3.0, 2.4,
+    3.5, 1.55, 0,
+    0x45483a,
+    0.5
+  );
+
+// ==========================================
+// OBSERVATION SCREEN
+// ==========================================
+
+const screenMaterial = new THREE.MeshBasicMaterial({
+  color: 0xffffff,
+  side: THREE.DoubleSide,
+  toneMapped: false
+});
+
+const screen = new THREE.Mesh(
+  new THREE.PlaneGeometry(3.6, 2.65),
+  screenMaterial
+);
+
+screen.rotation.y = Math.PI / 2;
+screen.position.set(3.39, 1.55, 0);
+
+experimentLayer.add(screen);
+
+  // ==========================================
+// REAL-TIME DIFFRACTION SCREEN
+// ==========================================
+
+const stripeCount = 241;
+const screenWidth = 3.6;
+const stripeWidth = screenWidth / stripeCount;
+
+for (let i = 0; i < stripeCount; i++) {
+
+  const z = -screenWidth / 2 +
+            (i + 0.5) * stripeWidth;
+
+  const material = new THREE.MeshBasicMaterial({
+    color: 0xff2020,
+    transparent: true,
+    opacity: 0,
+    depthWrite: false,
+    side: THREE.DoubleSide
+  });
+
+  // A narrow vertical strip on the observation screen.
+  const geometry = new THREE.PlaneGeometry(
+    stripeWidth * 1.05,
+    2.45
+  );
+
+  const stripe = new THREE.Mesh(geometry, material);
+
+  stripe.rotation.y = Math.PI / 2;
+
+  stripe.position.set(
+    3.365,
+    1.55,
+    z
+  );
+
+  stripe.userData.screenZ = z;
+
+  experimentLayer.add(stripe);
+
+  diffractionPattern.push(stripe);
+  diffractionMaterials.push(material);
+}
+
+  // LABELS
+  addExperimentLabel('LASER SOURCE', -4, 1.85, 0);
+  addExperimentLabel('SINGLE SLIT', -1.5, 2.65, 0);
+  addExperimentLabel('OBSERVATION SCREEN', 3.5, 3.25, 0);
+
+  // Set the camera to view the entire apparatus.
+  controls.target.set(-0.2, 1.0, 0);
+  camera.position.set(0.5, 6.5, 10);
+  camera.lookAt(controls.target);
+  controls.update();
+
+  updateDiffractionPattern();
+
+  diffractionActive = true;
+}
+
+
+// ==========================================
+// DOUBLE-SLIT DIFFRACTION 3D APPARATUS
+// ==========================================
+
+function createDoubleSlitDiffraction() {
+
+  // Clear the previous experiment apparatus only.
+  experimentLayer.clear();
+  diffractionPattern = [];
+  diffractionMaterials = [];
+
+  const ds = doubleSlitSettings;
+
+  // ------------------------------------------
+  // SUPPORT STANDS
+  // ------------------------------------------
+
+  [-4, -1.5, 3.5].forEach(x => {
+    createDiffractionBox(
+      0.12, 0.8, 0.12,
+      x, 0.5, 0,
+      0x77765a
+    );
+  });
+
+  // ------------------------------------------
+  // LASER SOURCE
+  // ------------------------------------------
+
+  createDiffractionBox(
+    0.8, 0.42, 0.55,
+    -4, 1.05, 0,
+    0x45483a, 0.7
+  );
+
+  createDiffractionCylinder(
+    0.12, 0.65,
+    -3.45, 1.05, 0,
+    0x92916b
+  );
+
+  const laserGlow = new THREE.Mesh(
+    new THREE.CircleGeometry(0.11, 32),
+    new THREE.MeshBasicMaterial({ color: 0xff2222 })
+  );
+
+  laserGlow.rotation.y = Math.PI / 2;
+  laserGlow.position.set(-3.1, 1.05, 0);
+  experimentLayer.add(laserGlow);
+
+  
+
+// ==========================================
+// DOUBLE-SLIT LASER LIGHT PATHS
+// ==========================================
+
+// 1. Incoming beam: laser source to slit plate
+const incomingBeamMaterial = new THREE.MeshBasicMaterial({
+  color: 0xff2020,
+  transparent: true,
+  opacity: 0.55,
+  depthWrite: false
+});
+
+const incomingBeam = new THREE.Mesh(
+  new THREE.CylinderGeometry(0.035, 0.035, 1.55, 24),
+  incomingBeamMaterial
+);
+
+incomingBeam.rotation.z = Math.PI / 2;
+incomingBeam.position.set(-2.275, 1.05, 0);
+
+experimentLayer.add(incomingBeam);
+
+// 2. Two outgoing paths, aligned with the slit openings
+const outgoingBeamMaterial = new THREE.MeshBasicMaterial({
+  color: 0xff2020,
+  transparent: true,
+  opacity: 0.65,
+  depthWrite: false
+});
+
+const slitPositions = [-0.275, 0.275];
+
+slitPositions.forEach(z => {
+
+  const outgoingBeam = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.022, 0.022, 4.45, 24),
+    outgoingBeamMaterial
+  );
+
+  outgoingBeam.rotation.z = Math.PI / 2;
+
+  // Starts just after the slit plate and ends near the screen.
+  outgoingBeam.position.set(0.975, 1.05, z);
+
+  experimentLayer.add(outgoingBeam);
+});
+
+
+  // ------------------------------------------
+  // DOUBLE-SLIT HOLDER
+  // ------------------------------------------
+
+  // Two narrow slits separated by adjustable d.
+  const holderWidth = 1.8;
+  // Visually enlarged slits for 3D demonstration.
+// Scientific calculations still use actual mm values.
+const slitWidth3D = 0.10;
+const separation3D = 0.55;
+
+  const plateMaterial = 0x242621;
+
+  // Leave two openings at -d/2 and +d/2.
+  const opening1 = -separation3D / 2;
+  const opening2 = separation3D / 2;
+
+  const plateSegments = [
+    [-holderWidth / 2, opening1 - slitWidth3D / 2],
+    [opening1 + slitWidth3D / 2, opening2 - slitWidth3D / 2],
+    [opening2 + slitWidth3D / 2, holderWidth / 2]
+  ];
+
+  plateSegments.forEach(([start, end]) => {
+    const depth = end - start;
+    if (depth <= 0) return;
+
+    createDiffractionBox(
+      0.18, 2.1, depth,
+      -1.38, 1.25, (start + end) / 2,
+      plateMaterial, 0.75
+    );
+  });
+
+  // ------------------------------------------
+  // OBSERVATION SCREEN FRAME
+  // ------------------------------------------
+
+  createDiffractionBox(
+    0.18, 3.0, 2.4,
+    3.5, 1.55, 0,
+    0x45483a, 0.5
+  );
+
+  const screen = new THREE.Mesh(
+    new THREE.PlaneGeometry(3.6, 2.65),
+    new THREE.MeshBasicMaterial({
+      color: 0xffffff,
+      side: THREE.DoubleSide,
+      toneMapped: false
+    })
+  );
+
+  screen.rotation.y = Math.PI / 2;
+  screen.position.set(3.39, 1.55, 0);
+  experimentLayer.add(screen);
+
+  // ------------------------------------------
+  // INTERFERENCE SCREEN STRIPES
+  // ------------------------------------------
+
+  const stripeCount = 361;
+  const screenWidth = 3.6;
+  const stripeWidth = screenWidth / stripeCount;
+
+  for (let i = 0; i < stripeCount; i++) {
+
+    const z = -screenWidth / 2 +
+      (i + 0.5) * stripeWidth;
+
+    const material = new THREE.MeshBasicMaterial({
+      color: 0xff2020,
+      transparent: true,
+      opacity: 0,
+      depthWrite: false,
+      side: THREE.DoubleSide
+    });
+
+    const stripe = new THREE.Mesh(
+      new THREE.PlaneGeometry(stripeWidth * 1.05, 2.45),
+      material
+    );
+
+    stripe.rotation.y = Math.PI / 2;
+    stripe.position.set(3.365, 1.55, z);
+    stripe.userData.screenZ = z;
+
+    experimentLayer.add(stripe);
+
+    diffractionPattern.push(stripe);
+    diffractionMaterials.push(material);
+  }
+
+  // ------------------------------------------
+  // LABELS
+  // ------------------------------------------
+
+  addExperimentLabel('LASER SOURCE', -4, 1.85, 0);
+  addExperimentLabel('DOUBLE SLIT', -1.5, 2.65, 0);
+  addExperimentLabel('OBSERVATION SCREEN', 3.5, 3.25, 0);
+
+  // Camera setup
+  controls.target.set(-0.2, 1.0, 0);
+  camera.position.set(0.5, 6.5, 10);
+  camera.lookAt(controls.target);
+  controls.update();
+
+  updateDoubleSlitPattern();
+}
+
+ // ==========================================
+ // N-SLIT DIFFRACTION 3D APPARATUS
+ // ==========================================
+
+function createNSlitDiffraction() {
+
+  // Clear the previous physics apparatus.
+  experimentLayer.clear();
+
+  // Keep N-Slit visual data independent.
+  nSlitPattern = [];
+  nSlitMaterials = [];
+
+  const N = nSlitSettings.count;
+
+  // ------------------------------------------
+  // SUPPORT STANDS
+  // ------------------------------------------
+
+  [-4, -1.5, 3.5].forEach(x => {
+    createDiffractionBox(
+      0.12, 0.8, 0.12,
+      x, 0.5, 0,
+      0x77765a
+    );
+  });
+
+  // ------------------------------------------
+  // LASER SOURCE
+  // ------------------------------------------
+
+  createDiffractionBox(
+    0.8, 0.42, 0.55,
+    -4, 1.05, 0,
+    0x45483a, 0.7
+  );
+
+  createDiffractionCylinder(
+    0.12, 0.65,
+    -3.45, 1.05, 0,
+    0x92916b
+  );
+
+  const laserGlow = new THREE.Mesh(
+    new THREE.CircleGeometry(0.11, 32),
+    new THREE.MeshBasicMaterial({ color: 0xff2222 })
+  );
+
+  laserGlow.rotation.y = Math.PI / 2;
+  laserGlow.position.set(-3.1, 1.05, 0);
+  experimentLayer.add(laserGlow);
+
+  // Incoming laser beam.
+  const incomingBeam = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.035, 0.035, 1.55, 24),
+    new THREE.MeshBasicMaterial({
+      color: 0xff2020,
+      transparent: true,
+      opacity: 0.55,
+      depthWrite: false
+    })
+  );
+
+  incomingBeam.rotation.z = Math.PI / 2;
+  incomingBeam.position.set(-2.275, 1.05, 0);
+  experimentLayer.add(incomingBeam);
+
+  // ------------------------------------------
+  // ADJUSTABLE N-SLIT GRATING
+  // ------------------------------------------
+
+  const holderWidth = 1.8;
+
+  // Visual spacing is scaled independently from
+  // the actual scientific separation.
+  const requestedPitch =
+    0.55 * (nSlitSettings.separation / 0.50);
+
+  const visualPitch = Math.min(
+    requestedPitch,
+    1.5 / (N - 1)
+  );
+
+  const visualSlitWidth = Math.min(
+    0.10,
+    visualPitch * 0.32
+  );
+
+  const firstCenter =
+    -((N - 1) * visualPitch) / 2;
+
+  const plateMaterial = 0x242621;
+
+  // Create solid plate segments between openings.
+  let cursor = -holderWidth / 2;
+
+  for (let i = 0; i < N; i++) {
+
+    const center = firstCenter + i * visualPitch;
+
+    const openingStart =
+      center - visualSlitWidth / 2;
+
+    const openingEnd =
+      center + visualSlitWidth / 2;
+
+    if (openingStart > cursor) {
+
+      const segmentDepth = openingStart - cursor;
+
+      createDiffractionBox(
+        0.18, 2.1, segmentDepth,
+        -1.38, 1.25,
+        cursor + segmentDepth / 2,
+        plateMaterial, 0.75
+      );
+    }
+
+    cursor = openingEnd;
+  }
+
+  // Final plate section.
+  if (cursor < holderWidth / 2) {
+
+    const segmentDepth =
+      holderWidth / 2 - cursor;
+
+    createDiffractionBox(
+      0.18, 2.1, segmentDepth,
+      -1.38, 1.25,
+      cursor + segmentDepth / 2,
+      plateMaterial, 0.75
+    );
+  }
+
+  // ------------------------------------------
+  // OUTGOING BEAM PATHS
+  // ------------------------------------------
+
+  const outgoingMaterial = new THREE.MeshBasicMaterial({
+    color: 0xff2020,
+    transparent: true,
+    opacity: 0.55,
+    depthWrite: false
+  });
+
+  for (let i = 0; i < N; i++) {
+
+    const z = firstCenter + i * visualPitch;
+
+    const beam = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.012, 0.012, 4.45, 16),
+      outgoingMaterial
+    );
+
+    beam.rotation.z = Math.PI / 2;
+    beam.position.set(0.975, 1.05, z);
+
+    experimentLayer.add(beam);
+  }
+
+  // ------------------------------------------
+  // OBSERVATION SCREEN FRAME
+  // ------------------------------------------
+
+  createDiffractionBox(
+    0.18, 3.0, 2.4,
+    3.5, 1.55, 0,
+    0x45483a, 0.5
+  );
+
+  const screen = new THREE.Mesh(
+    new THREE.PlaneGeometry(3.6, 2.65),
+    new THREE.MeshBasicMaterial({
+      color: 0xffffff,
+      side: THREE.DoubleSide,
+      toneMapped: false
+    })
+  );
+
+  screen.rotation.y = Math.PI / 2;
+  screen.position.set(3.39, 1.55, 0);
+  experimentLayer.add(screen);
+
+  // ------------------------------------------
+  // N-SLIT INTERFERENCE SCREEN
+  // ------------------------------------------
+
+  const stripeCount = 361;
+  const screenWidth = 3.6;
+  const stripeWidth = screenWidth / stripeCount;
+
+  for (let i = 0; i < stripeCount; i++) {
+
+    const z = -screenWidth / 2 +
+      (i + 0.5) * stripeWidth;
+
+    const material = new THREE.MeshBasicMaterial({
+      color: 0xff2020,
+      transparent: true,
+      opacity: 0,
+      depthWrite: false,
+      side: THREE.DoubleSide
+    });
+
+    const stripe = new THREE.Mesh(
+      new THREE.PlaneGeometry(
+        stripeWidth * 1.05,
+        2.45
+      ),
+      material
+    );
+
+    stripe.rotation.y = Math.PI / 2;
+    stripe.position.set(3.365, 1.55, z);
+    stripe.userData.screenZ = z;
+
+    experimentLayer.add(stripe);
+
+    nSlitPattern.push(stripe);
+    nSlitMaterials.push(material);
+  }
+
+  // ------------------------------------------
+  // LABELS
+  // ------------------------------------------
+
+  addExperimentLabel('LASER SOURCE', -4, 1.85, 0);
+  addExperimentLabel('N-SLIT GRATING', -1.5, 2.65, 0);
+  addExperimentLabel('OBSERVATION SCREEN', 3.5, 3.25, 0);
+
+  // Camera setup.
+  controls.target.set(-0.2, 1.0, 0);
+  camera.position.set(0.5, 6.5, 10);
+  camera.lookAt(controls.target);
+  controls.update();
+
+  // Calculate the initial screen pattern.
+  updateNSlitPattern();
+}
+
+// ==========================================
+// REBUILD N-SLIT APPARATUS WHEN SETTINGS CHANGE
+// ==========================================
+
+function rebuildNSlitApparatus() {
+  createNSlitDiffraction();
+}
+
+function addExperimentLabel(text, x, y, z) {
+  const canvas = document.createElement('canvas');
+  canvas.width = 512;
+  canvas.height = 128;
+
+  const context = canvas.getContext('2d');
+
+  context.clearRect(0, 0, 512, 128);
+  context.fillStyle = '#e7e5dc';
+  context.font = 'bold 34px Arial';
+  context.textAlign = 'center';
+  context.fillText(text, 256, 76);
+
+  const texture = new THREE.CanvasTexture(canvas);
+
+  const material = new THREE.SpriteMaterial({
+    map: texture,
+    transparent: true,
+    depthTest: false
+  });
+
+  const sprite = new THREE.Sprite(material);
+  sprite.position.set(x, y, z);
+  sprite.scale.set(1.8, 0.45, 1);
+
+  experimentLayer.add(sprite);
+}
+
+// ==========================================
+// SCIENTIFIC SINGLE-SLIT DIFFRACTION ENGINE
+// ==========================================
+
+function updateDiffractionPattern() {
+
+  if (!diffractionPattern.length) return;
+
+  // Convert parameters into SI units.
+  const wavelength =
+    diffractionSettings.wavelength * 1e-9;
+
+  const slitWidth =
+    diffractionSettings.slitWidth * 1e-3;
+
+  const distance =
+    diffractionSettings.distance;
+
+  // Physical display scale.
+  // 30 Three.js units represent one metre.
+  const visualScale = 30;
+
+  // ------------------------------------------
+  // 1. CALCULATE SCREEN INTENSITY
+  // ------------------------------------------
+
+  diffractionPattern.forEach((stripe, index) => {
+
+    const z = stripe.userData.screenZ;
+
+    // Physical position on the observation screen.
+    const y = z / visualScale;
+
+    // Exact geometrical angle.
+    const sinTheta =
+      y / Math.sqrt(distance * distance + y * y);
+
+    const theta = Math.asin(sinTheta);
+
+    const beta =
+      Math.PI * slitWidth * sinTheta / wavelength;
+
+    const sinc = Math.abs(beta) < 1e-10
+      ? 1
+      : Math.sin(beta) / beta;
+
+    // Actual normalized single-slit intensity.
+    const intensity = sinc * sinc;
+
+    // Slight visual enhancement for secondary fringes.
+// The actual physics intensity remains unchanged.
+const visualIntensity = Math.pow(intensity, 0.72) * 1.15;
+
+diffractionMaterials[index].opacity =
+  Math.max(0, Math.min(1, visualIntensity));
+
+  });
+
+  // ------------------------------------------
+  // 2. CALCULATE THEORETICAL MINIMA
+  // ------------------------------------------
+
+  function calculateMinimum(order) {
+
+    const ratio =
+      order * wavelength / slitWidth;
+
+    if (ratio >= 1) return null;
+
+    // a sin(theta) = m lambda
+    const theta = Math.asin(ratio);
+
+    // Convert angle to distance on the screen.
+    return distance * Math.tan(theta);
+  }
+
+  const first = calculateMinimum(1);
+  const second = calculateMinimum(2);
+  const third = calculateMinimum(3);
+
+  const formatDistance = value =>
+    value === null
+      ? 'Not visible'
+      : `${(value * 1000).toFixed(2)} mm`;
+
+  document.getElementById('first-minimum').textContent =
+    formatDistance(first);
+
+  document.getElementById('second-minimum').textContent =
+    formatDistance(second);
+
+  document.getElementById('third-minimum').textContent =
+    formatDistance(third);
+
+  document.getElementById('central-width').textContent =
+    first === null
+      ? 'Not defined'
+      : `${(first * 2000).toFixed(2)} mm`;
+
+  // ------------------------------------------
+  // 3. DRAW LIVE INTENSITY GRAPH
+  // ------------------------------------------
+
+  drawDiffractionGraph(
+    wavelength,
+    slitWidth,
+    distance
+  );
+
+  // ------------------------------------------
+  // 4. EXPERIMENTAL WAVELENGTH
+  // ------------------------------------------
+
+  updateExperimentalCalculation(
+    slitWidth,
+    distance,
+    wavelength
+  );
+}
+
+
+// ==========================================
+// LIVE INTENSITY GRAPH
+// ==========================================
+
+function drawDiffractionGraph(
+  wavelength,
+  slitWidth,
+  distance
+) {
+
+  const canvas =
+    document.getElementById('diffraction-graph');
+
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+
+  const width = canvas.width;
+  const height = canvas.height;
+
+  const left = 55;
+  const right = 18;
+  const top = 18;
+  const bottom = 38;
+
+  const graphWidth = width - left - right;
+  const graphHeight = height - top - bottom;
+
+  ctx.clearRect(0, 0, width, height);
+
+  ctx.fillStyle = '#30332B';
+  ctx.fillRect(0, 0, width, height);
+
+  const screenHalfWidth = 1.8 / 30;
+
+  function intensityAt(y) {
+
+    const sinTheta =
+      y / Math.sqrt(distance * distance + y * y);
+
+    const beta =
+      Math.PI * slitWidth * sinTheta / wavelength;
+
+    if (Math.abs(beta) < 1e-10) return 1;
+
+    const sinc = Math.sin(beta) / beta;
+
+    return sinc * sinc;
+  }
+
+  // Grid lines.
+  ctx.strokeStyle = '#555747';
+  ctx.lineWidth = 1;
+
+  for (let i = 0; i <= 4; i++) {
+
+    const y = top + graphHeight * i / 4;
+
+    ctx.beginPath();
+    ctx.moveTo(left, y);
+    ctx.lineTo(width - right, y);
+    ctx.stroke();
+  }
+
+  // Y-axis labels.
+  ctx.fillStyle = '#B7B5A7';
+  ctx.font = '12px Arial';
+  ctx.textAlign = 'right';
+
+  for (let i = 0; i <= 4; i++) {
+
+    const value = 100 - i * 25;
+    const y = top + graphHeight * i / 4;
+
+    ctx.fillText(`${value}%`, left - 8, y + 4);
+  }
+
+  // X-axis labels.
+  ctx.textAlign = 'center';
+
+  for (let i = 0; i <= 4; i++) {
+
+    const fraction = i / 4;
+
+    const physicalPosition =
+      (-screenHalfWidth +
+        2 * screenHalfWidth * fraction) * 1000;
+
+    const x = left + graphWidth * fraction;
+
+    ctx.fillText(
+      physicalPosition.toFixed(0),
+      x,
+      height - 12
+    );
+  }
+
+  // Plot the actual calculated intensity.
+  ctx.beginPath();
+
+  for (let i = 0; i <= 700; i++) {
+
+    const fraction = i / 700;
+
+    const yPosition =
+      -screenHalfWidth +
+      fraction * 2 * screenHalfWidth;
+
+    const intensity = intensityAt(yPosition);
+
+    const x = left + fraction * graphWidth;
+
+    const y =
+      top + (1 - intensity) * graphHeight;
+
+    if (i === 0) {
+      ctx.moveTo(x, y);
+    } else {
+      ctx.lineTo(x, y);
+    }
+  }
+
+  ctx.strokeStyle = '#C1AD8B';
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+
+  // Central maximum marker.
+  const centerX = left + graphWidth / 2;
+
+  ctx.strokeStyle = '#92916B';
+  ctx.setLineDash([4, 4]);
+
+  ctx.beginPath();
+  ctx.moveTo(centerX, top);
+  ctx.lineTo(centerX, top + graphHeight);
+  ctx.stroke();
+
+  ctx.setLineDash([]);
+}
+
+
+// ==========================================
+// EXPERIMENTAL WAVELENGTH CALCULATION
+// ==========================================
+
+function updateExperimentalCalculation(
+  slitWidth,
+  distance,
+  actualWavelength
+) {
+
+  const input =
+    document.getElementById('measured-minimum');
+
+  if (!input) return;
+
+  const measuredMM = Number(input.value);
+
+  const wavelengthOutput =
+    document.getElementById('calculated-wavelength');
+
+  const errorOutput =
+    document.getElementById('wavelength-error');
+
+  if (
+    !Number.isFinite(measuredMM) ||
+    measuredMM <= 0
+  ) {
+    wavelengthOutput.textContent = 'Enter a valid value';
+    errorOutput.textContent = '—';
+    return;
+  }
+
+  // Convert measured position to metres.
+  const y = measuredMM / 1000;
+
+  // Recover the diffraction angle.
+  const theta = Math.atan(y / distance);
+
+  // First minimum: m = 1.
+  const calculatedWavelength =
+    slitWidth * Math.sin(theta);
+
+  const error =
+    Math.abs(
+      calculatedWavelength - actualWavelength
+    ) / actualWavelength * 100;
+
+  wavelengthOutput.textContent =
+    `${(calculatedWavelength * 1e9).toFixed(2)} nm`;
+
+  errorOutput.textContent =
+    `${error.toFixed(2)}%`;
+}
+
+// ==========================================
+// DOUBLE-SLIT SCIENTIFIC PHYSICS ENGINE
+// ==========================================
+
+function updateDoubleSlitPattern() {
+
+  if (!diffractionPattern.length) return;
+
+  const wavelength = doubleSlitSettings.wavelength * 1e-9;
+  const slitWidth = doubleSlitSettings.slitWidth * 1e-3;
+  const separation = doubleSlitSettings.separation * 1e-3;
+  const distance = doubleSlitSettings.distance;
+
+  const visualScale = 30;
+
+  // ------------------------------------------
+  // 1. DOUBLE-SLIT INTENSITY
+  // ------------------------------------------
+
+  function intensityAt(y) {
+
+    const sinTheta =
+      y / Math.sqrt(distance * distance + y * y);
+
+    const beta =
+      Math.PI * slitWidth * sinTheta / wavelength;
+
+    const alpha =
+      Math.PI * separation * sinTheta / wavelength;
+
+    const envelope =
+      Math.abs(beta) < 1e-10
+        ? 1
+        : Math.pow(Math.sin(beta) / beta, 2);
+
+    const interference = Math.pow(Math.cos(alpha), 2);
+
+    return envelope * interference;
+  }
+
+  // Update 3D observation screen.
+  diffractionPattern.forEach((stripe, index) => {
+
+    const y = stripe.userData.screenZ / visualScale;
+
+    const intensity = intensityAt(y);
+
+    // Slight visual enhancement, preserving physical calculations.
+    const visualIntensity =
+      Math.pow(Math.max(0, intensity), 0.72) * 1.15;
+
+    diffractionMaterials[index].opacity =
+      Math.min(1, visualIntensity);
+
+  });
+
+  // ------------------------------------------
+  // 2. THEORETICAL FRINGE POSITIONS
+  // ------------------------------------------
+
+  const fringeSpacing =
+    wavelength * distance / separation;
+
+  const formatMM = value =>
+    `${(value * 1000).toFixed(2)} mm`;
+
+  const firstBright = fringeSpacing;
+  const secondBright = 2 * fringeSpacing;
+  const thirdBright = 3 * fringeSpacing;
+
+  // ------------------------------------------
+  // 3. UPDATE OBSERVATION METRICS
+  // ------------------------------------------
+
+  const setText = (id, value) => {
+    const element = document.getElementById(id);
+    if (element) element.textContent = value;
+  };
+
+  setText('ds-fringe-spacing', formatMM(fringeSpacing));
+  setText('ds-first-bright', formatMM(firstBright));
+  setText('ds-second-bright', formatMM(secondBright));
+  setText('ds-third-bright', formatMM(thirdBright));
+
+  // First dark fringe: half the fringe spacing.
+  setText(
+    'ds-first-dark',
+    formatMM(fringeSpacing / 2)
+  );
+
+  // ------------------------------------------
+  // 4. LIVE INTENSITY GRAPH
+  // ------------------------------------------
+
+  drawDoubleSlitGraph(
+    wavelength,
+    slitWidth,
+    separation,
+    distance
+  );
+
+  // ------------------------------------------
+  // 5. EXPERIMENTAL WAVELENGTH
+  // ------------------------------------------
+
+  updateDoubleSlitWavelength(
+    separation,
+    distance,
+    wavelength
+  );
+}
+
+
+// ==========================================
+// DOUBLE-SLIT LIVE INTENSITY GRAPH
+// ==========================================
+
+function drawDoubleSlitGraph(
+  wavelength,
+  slitWidth,
+  separation,
+  distance
+) {
+
+  const canvas =
+    document.getElementById('double-slit-graph');
+
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+
+  const width = canvas.width;
+  const height = canvas.height;
+
+  const left = 55;
+  const right = 18;
+  const top = 18;
+  const bottom = 38;
+
+  const graphWidth = width - left - right;
+  const graphHeight = height - top - bottom;
+
+  ctx.clearRect(0, 0, width, height);
+
+  ctx.fillStyle = '#30332B';
+  ctx.fillRect(0, 0, width, height);
+
+  const screenHalfWidth = 1.8 / 30;
+
+  function intensityAt(y) {
+
+    const sinTheta =
+      y / Math.sqrt(distance * distance + y * y);
+
+    const beta =
+      Math.PI * slitWidth * sinTheta / wavelength;
+
+    const alpha =
+      Math.PI * separation * sinTheta / wavelength;
+
+    const envelope =
+      Math.abs(beta) < 1e-10
+        ? 1
+        : Math.pow(Math.sin(beta) / beta, 2);
+
+    return envelope * Math.pow(Math.cos(alpha), 2);
+  }
+
+  // Grid.
+  ctx.strokeStyle = '#555747';
+  ctx.lineWidth = 1;
+
+  for (let i = 0; i <= 4; i++) {
+
+    const y = top + graphHeight * i / 4;
+
+    ctx.beginPath();
+    ctx.moveTo(left, y);
+    ctx.lineTo(width - right, y);
+    ctx.stroke();
+  }
+
+  // Axis labels.
+  ctx.fillStyle = '#B7B5A7';
+  ctx.font = '13px Arial';
+  ctx.textAlign = 'right';
+
+  for (let i = 0; i <= 4; i++) {
+
+    const value = 100 - i * 25;
+    const y = top + graphHeight * i / 4;
+
+    ctx.fillText(`${value}%`, left - 8, y + 4);
+  }
+
+  ctx.textAlign = 'center';
+
+  for (let i = 0; i <= 4; i++) {
+
+    const fraction = i / 4;
+
+    const position =
+      (-screenHalfWidth + 2 * screenHalfWidth * fraction) * 1000;
+
+    const x = left + graphWidth * fraction;
+
+    ctx.fillText(position.toFixed(0), x, height - 12);
+  }
+
+  // Actual double-slit intensity curve.
+  ctx.beginPath();
+
+  for (let i = 0; i <= 1200; i++) {
+
+    const fraction = i / 1200;
+
+    const position =
+      -screenHalfWidth +
+      fraction * 2 * screenHalfWidth;
+
+    const intensity = intensityAt(position);
+
+    const x = left + fraction * graphWidth;
+
+    const y =
+      top + (1 - intensity) * graphHeight;
+
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+
+  ctx.strokeStyle = '#C1AD8B';
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+
+  // Central maximum.
+  const centerX = left + graphWidth / 2;
+
+  ctx.strokeStyle = '#92916B';
+  ctx.setLineDash([4, 4]);
+
+  ctx.beginPath();
+  ctx.moveTo(centerX, top);
+  ctx.lineTo(centerX, top + graphHeight);
+  ctx.stroke();
+
+  ctx.setLineDash([]);
+}
+
+
+// ==========================================
+// DOUBLE-SLIT WAVELENGTH CALCULATION
+// ==========================================
+
+function updateDoubleSlitWavelength(
+  separation,
+  distance,
+  actualWavelength
+) {
+
+  const input =
+    document.getElementById('ds-measured-fringe');
+
+  const output =
+    document.getElementById('ds-calculated-wavelength');
+
+  const errorOutput =
+    document.getElementById('ds-wavelength-error');
+
+  if (!input || !output || !errorOutput) return;
+
+  const measuredMM = Number(input.value);
+
+  if (!Number.isFinite(measuredMM) || measuredMM <= 0) {
+    output.textContent = 'Enter a valid value';
+    errorOutput.textContent = '—';
+    return;
+  }
+
+  const measuredDistance = measuredMM / 1000;
+
+  // λ = y d / D
+  const calculatedWavelength =
+    measuredDistance * separation / distance;
+
+  const error =
+    Math.abs(calculatedWavelength - actualWavelength) /
+    actualWavelength * 100;
+
+  output.textContent =
+    `${(calculatedWavelength * 1e9).toFixed(2)} nm`;
+
+  errorOutput.textContent =
+    `${error.toFixed(2)}%`;
+}
+
 const raycaster = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 const groundPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), -0.15);
